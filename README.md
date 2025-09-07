@@ -35,6 +35,8 @@ web3_nft_viewer/
 ---
 
 ▶️ Usage
+
+
 🔹 View a Single NFT
 
 Fetch metadata + image for TOKEN_ID:
@@ -46,11 +48,17 @@ python nft_viewer.py
 Example Output:
 
 🔎 Checking NFT 1 in contract 0xbc4c...
+
 🌐 Token URI: https://ipfs.io/ipfs/Qm12345...
+
 📜 NFT Metadata:
+
    name: Bored Ape #1
+   
    description: A unique ape NFT
+   
    attributes: [{ "trait_type": "Background", "value": "Orange" }]
+   
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm67890...
 
 
@@ -68,15 +76,23 @@ Example Output:
 📦 Wallet 0x123... owns 2 NFTs in this collection.
 
 🔎 Token ID: 1
+
    name: Bored Ape #1
+   
    description: A unique ape NFT
+   
    attributes: [...]
+   
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm67890...
 
 🔎 Token ID: 27
+
    name: Bored Ape #27
+   
    description: Another unique ape
+   
    attributes: [...]
+   
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm13579...
 
 
@@ -94,11 +110,15 @@ Example Output:
 👛 NFT Portfolio for 0x123...
 
 📦 BoredApeYachtClub (BAYC)
+
    Contract: 0xbc4c...
+   
    Tokens: 1, 14, 27
 
 📦 PudgyPenguins (PPG)
+
    Contract: 0xbd35...
+   
    Tokens: 998
 
 ---
@@ -108,7 +128,9 @@ Example Output:
 Choose export formats:
 
 python nft_portfolio.py --json    # Export to JSON
+
 python nft_portfolio.py --csv     # Export to CSV
+
 python nft_portfolio.py --all     # Export both
 
 ---
