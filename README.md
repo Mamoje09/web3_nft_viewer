@@ -51,6 +51,7 @@ Example Output:
 
 🌐 Token URI: https://ipfs.io/ipfs/Qm12345...
 
+
 📜 NFT Metadata:
 
    name: Bored Ape #1
@@ -58,6 +59,7 @@ Example Output:
    description: A unique ape NFT
    
    attributes: [{ "trait_type": "Background", "value": "Orange" }]
+   
    
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm67890...
 
@@ -75,6 +77,7 @@ Example Output:
 
 📦 Wallet 0x123... owns 2 NFTs in this collection.
 
+
 🔎 Token ID: 1
 
    name: Bored Ape #1
@@ -83,7 +86,9 @@ Example Output:
    
    attributes: [...]
    
+   
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm67890...
+
 
 🔎 Token ID: 27
 
@@ -92,6 +97,7 @@ Example Output:
    description: Another unique ape
    
    attributes: [...]
+   
    
 🖼️ NFT Image: https://ipfs.io/ipfs/Qm13579...
 
@@ -109,11 +115,13 @@ Example Output:
 
 👛 NFT Portfolio for 0x123...
 
+
 📦 BoredApeYachtClub (BAYC)
 
    Contract: 0xbc4c...
    
    Tokens: 1, 14, 27
+   
 
 📦 PudgyPenguins (PPG)
 
@@ -124,6 +132,7 @@ Example Output:
 ---
 
 🔹 Export Portfolio (CLI Flags)
+
 
 Choose export formats:
 
@@ -137,6 +146,7 @@ python nft_portfolio.py --all     # Export both
 
 Example Exported Files
 
+
 nft_portfolio.json
 
 nft_portfolio.csv
@@ -145,6 +155,7 @@ nft_portfolio.csv
 
 📸 Demo
 
+
 Console output (NFT metadata & portfolio)
 
 Example JSON/CSV exports
@@ -152,6 +163,7 @@ Example JSON/CSV exports
 ---
 
 🛠 Roadmap
+
 
 Add support for ERC-1155 (multi-token standard)
 
@@ -165,6 +177,8 @@ Build a simple FastAPI dashboard
 
 📬 About Me
 
-I’m Mamo (GitHub: mamoje09
+I’m Mamo (GitHub: mamoje09)
+
 I'm a backend engineer expanding into Web3.
+
 This is my fourth Web3 project, showcasing skills in ERC-721 smart contracts, IPFS metadata and Etherscan API integration.
