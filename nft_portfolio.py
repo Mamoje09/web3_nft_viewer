@@ -17,7 +17,7 @@ etherscan_api = os.getenv("ETHERSCAN_API_KEY")
 polygon_api = os.getenv("POLYGONSCAN_API_KEY")
 bsc_api = os.getenv("BSCSCAN_API_KEY")
 
-# Default RPC endpoints (can be overridden in .env)
+# Default RPC endpoints
 RPCS = {
     "eth": os.getenv("ETHEREUM_RPC", "https://mainnet.infura.io/v3/YOUR_PROJECT_ID"),
     "polygon": os.getenv("POLYGON_RPC", "https://polygon-rpc.com"),
@@ -46,6 +46,7 @@ ERC721_ABI = [
 parser = argparse.ArgumentParser(description="Multi-chain NFT Portfolio Tracker")
 parser.add_argument("--wallet", help="Wallet address")
 parser.add_argument("--chains", default="eth", help="Comma-separated chains: eth,polygon,bsc")
+parser.add_argument("--contract", help="Restrict results to one NFT contract")
 parser.add_argument("--json", action="store_true", help="Export portfolio to JSON")
 parser.add_argument("--csv", action="store_true", help="Export portfolio to CSV")
 parser.add_argument("--all", action="store_true", help="Export portfolio to JSON and CSV")
@@ -102,7 +103,7 @@ def fetch_nfts(chain: str):
             return []
         result = resp.get("result", [])
         if args.limit > 0:
-            return result[:args.limit]
+            result = result[:args.limit]
         return result
     except Exception as e:
         print(f"❌ Error fetching NFTs from {chain}: {e}")
@@ -116,6 +117,11 @@ def build_portfolio(transactions, chain: str):
             contract_addr = Web3.to_checksum_address(tx["contractAddress"])
         except Exception:
             continue
+
+        # Skip if --contract is set and this is not the one
+        if args.contract and contract_addr.lower() != args.contract.lower():
+            continue
+
         token_id = tx["tokenID"]
         name = tx.get("tokenName", "UnknownNFT")
         symbol = tx.get("tokenSymbol", "")
@@ -135,6 +141,8 @@ def fetch_metadata(w3, contract_addr, token_id):
 
 def show_portfolio(portfolio):
     print(f"\n👛 NFT Portfolio for {wallet}")
+    if not portfolio:
+        print("⚠️ No NFTs found.")
     for contract, data in portfolio.items():
         print(f"\n📦 {data['name']} ({data['symbol']})")
         print(f"   Contract: {contract}")
