@@ -1,20 +1,22 @@
 # NFT Metadata & Portfolio Viewer 🎨  
 
-A Python tool to explore NFTs:  
+A Python toolkit to explore NFTs:  
 - Fetch **metadata + images** for a single NFT (ERC-721)  
 - List **all NFTs owned by a wallet** in a given collection  
-- Fetch **NFT portfolio across all collections** using the Etherscan API  
-- Export portfolio to **JSON or CSV** with simple CLI flags  
+- Fetch **multi-chain NFT portfolio** (Ethereum, Polygon, BSC)  
+- Export portfolio to **JSON/CSV**  
+- Optionally **download NFT images** locally  
 
 ---
 
 ## ✨ Features
-- ✅ Fetch single NFT metadata by **Token ID**  
-- ✅ List all NFTs in a collection owned by a wallet  
-- ✅ Fetch NFT portfolio across **all contracts** via Etherscan API  
-- ✅ Export portfolio to **JSON**  
-- ✅ Export portfolio to **CSV**  
-- ✅ CLI support (`--json`, `--csv`, `--all`)  
+- ✅ Single NFT lookup with `--contract` and `--token`  
+- ✅ Full wallet portfolio across **Ethereum, Polygon, BSC**  
+- ✅ Restrict portfolio by **contract**  
+- ✅ Export to **JSON** / **CSV**  
+- ✅ Save NFT images (`--save-images`)  
+- ✅ CLI flags for flexibility  
+
 
 ---
 
@@ -37,11 +39,17 @@ web3_nft_viewer/
 ▶️ Usage
 
 
-🔹 View a Single NFT
+🔹 Single NFT Viewer
 
-Fetch metadata + image for TOKEN_ID:
+Fetch metadata + image:
 
 python nft_viewer.py
+
+
+Override Defaults:
+
+python nft_viewer.py --wallet 0x123... --contract 0xABC... --token 42
+
 
 ---
 
@@ -66,112 +74,78 @@ Example Output:
 
 ---
 
-🔹 View All NFTs in a Collection
-
-Lists every token owned by your wallet in the given NFT_CONTRACT:
+🔹 Wallet NFTs in a Collection
 
 python nft_viewer.py
 
 
-Example Output:
+Example output:
 
 📦 Wallet 0x123... owns 2 NFTs in this collection.
 
-
 🔎 Token ID: 1
-
-   name: Bored Ape #1
-   
-   description: A unique ape NFT
-   
-   attributes: [...]
-   
-   
-🖼️ NFT Image: https://ipfs.io/ipfs/Qm67890...
-
 
 🔎 Token ID: 27
 
-   name: Bored Ape #27
-   
-   description: Another unique ape
-   
-   attributes: [...]
-   
-   
-🖼️ NFT Image: https://ipfs.io/ipfs/Qm13579...
 
 
----
+🔹 Multi-Chain NFT Portfolio
 
-🔹 NFT Portfolio (All Contracts)
-
-Fetches all NFT collections your wallet owns using Etherscan API:
+Ethereum only (default):
 
 python nft_portfolio.py
 
 
-Example Output:
+Multiple chains:
 
-👛 NFT Portfolio for 0x123...
-
-
-📦 BoredApeYachtClub (BAYC)
-
-   Contract: 0xbc4c...
-   
-   Tokens: 1, 14, 27
-   
-
-📦 PudgyPenguins (PPG)
-
-   Contract: 0xbd35...
-   
-   Tokens: 998
-
----
-
-🔹 Export Portfolio (CLI Flags)
+python nft_portfolio.py --chains eth,polygon,bsc
 
 
-Choose export formats:
+Restrict by contract:
 
-python nft_portfolio.py --json    # Export to JSON
-
-python nft_portfolio.py --csv     # Export to CSV
-
-python nft_portfolio.py --all     # Export both
-
----
-
-Example Exported Files
+python nft_portfolio.py --contract 0xBC4CA0e...
 
 
-nft_portfolio.json
+Export:
 
-nft_portfolio.csv
+python nft_portfolio.py --json
+
+python nft_portfolio.py --csv
+
+python nft_portfolio.py --all
+
+
+Save images:
+
+python nft_portfolio.py --save-images --folder nft_images
+
+
+Limit results:
+
+python nft_portfolio.py --limit 10
+
 
 ---
 
 📸 Demo
 
 
-Console output (NFT metadata & portfolio)
+Console output (metadata & portfolio)
 
-Example JSON/CSV exports
+Example JSON/CSV export files
+
+Sample NFT images saved locally
 
 ---
 
 🛠 Roadmap
 
 
-Add support for ERC-1155 (multi-token standard)
+Add ERC-1155 support
 
-Add NFT image auto-downloader
+Google Sheets export
 
-Export directly to Google Sheets
-
-Build a simple FastAPI dashboard
+Simple FastAPI dashboard
 
 ---
 
@@ -181,4 +155,10 @@ I’m Mamo (GitHub: mamoje09)
 
 I'm a backend engineer expanding into Web3.
 
-This is my fourth Web3 project, showcasing skills in ERC-721 smart contracts, IPFS metadata and Etherscan API integration.
+This is my fourth Web3 project showcasing:
+
+ERC-721 smart contracts
+
+IPFS metadata
+
+Multi-chain RPC + API integration
